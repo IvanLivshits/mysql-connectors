@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  mariadb:
+    image: mariadb:11.0.2
+    container_name: cdp_mariadb
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=cdp
+      - MYSQL_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./.docker/mariadb/db_data:/var/lib/mysql
+      - ./.docker/mariadb/db_conf:/etc/mysql/conf.d
+    ports:
+    - "3306:3306/tcp"
+
